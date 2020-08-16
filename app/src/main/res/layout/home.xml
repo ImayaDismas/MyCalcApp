@@ -51,7 +51,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/input_background"
                         android:hint="@string/input_value_1"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:lineSpacingExtra="3sp"
                         android:paddingStart="11.8dp"
                         android:paddingEnd="11.8dp"
@@ -76,7 +76,7 @@
                         android:layout_height="50dp"
                         android:background="@drawable/input_background"
                         android:hint="@string/input_value_2"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:lineSpacingExtra="3sp"
                         android:paddingStart="11.8dp"
                         android:paddingEnd="11.8dp"
@@ -117,14 +117,15 @@
                             android:layout_height="50dp"
                             android:background="@drawable/input_background"
                             android:hint="@string/result_label"
-                            android:inputType="text"
+                            android:inputType="number"
+                            android:gravity="center"
                             android:lineSpacingExtra="3sp"
                             android:paddingStart="11.8dp"
                             android:paddingEnd="11.8dp"
                             android:paddingTop="@dimen/floating_hint_margin"
                             android:textColor="@color/colorText"
                             android:textColorHint="@color/colorHint"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
                     </com.imaya.dismas.mycalcapp.utils.NoChangingBackgroundTextInputLayout>
 
                 </LinearLayout>
