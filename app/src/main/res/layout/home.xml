@@ -32,12 +32,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/app_name"
+                    android:text="@string/compute"
                     android:textColor="@color/colorAccent"
                     android:textSize="24sp" />
 
                 <com.imaya.dismas.mycalcapp.utils.NoChangingBackgroundTextInputLayout
-                    android:id="@+id/tlUsername"
+                    android:id="@+id/tlValue1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -46,7 +46,7 @@
                     app:hintTextAppearance="@style/TextAppearance.Hint">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/teUsername"
+                        android:id="@+id/teValue1"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/input_background"
@@ -61,6 +61,170 @@
                         android:textSize="14sp"/>
                 </com.imaya.dismas.mycalcapp.utils.NoChangingBackgroundTextInputLayout>
 
+                <com.imaya.dismas.mycalcapp.utils.NoChangingBackgroundTextInputLayout
+                    android:id="@+id/tlValue2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    app:errorTextAppearance="@style/Error.Appearance"
+                    app:hintTextAppearance="@style/TextAppearance.Hint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/teValue2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/input_background"
+                        android:hint="@string/input_value_2"
+                        android:inputType="text"
+                        android:lineSpacingExtra="3sp"
+                        android:paddingStart="11.8dp"
+                        android:paddingEnd="11.8dp"
+                        android:paddingTop="@dimen/floating_hint_margin"
+                        android:textColor="@color/colorText"
+                        android:textColorHint="@color/colorHint"
+                        android:textSize="14sp"/>
+                </com.imaya.dismas.mycalcapp.utils.NoChangingBackgroundTextInputLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/result"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="24sp" />
+
+                    <com.imaya.dismas.mycalcapp.utils.NoChangingBackgroundTextInputLayout
+                        android:id="@+id/tlResult"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        app:errorTextAppearance="@style/Error.Appearance"
+                        app:hintTextAppearance="@style/TextAppearance.Hint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/teResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@drawable/input_background"
+                            android:hint="@string/result_label"
+                            android:inputType="text"
+                            android:lineSpacingExtra="3sp"
+                            android:paddingStart="11.8dp"
+                            android:paddingEnd="11.8dp"
+                            android:paddingTop="@dimen/floating_hint_margin"
+                            android:textColor="@color/colorText"
+                            android:textColorHint="@color/colorHint"
+                            android:textSize="14sp"/>
+                    </com.imaya.dismas.mycalcapp.utils.NoChangingBackgroundTextInputLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/btnAdd"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="9dp"
+                            android:background="@drawable/btn_background"
+                            android:padding="12dp"
+                            android:text="@string/add"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/btnSubtract"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="9dp"
+                            android:background="@drawable/btn_background"
+                            android:padding="12dp"
+                            android:text="@string/subtract"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/btnDivide"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="9dp"
+                            android:background="@drawable/btn_background"
+                            android:padding="12dp"
+                            android:text="@string/divide"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/btnMultiply"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="9dp"
+                            android:background="@drawable/btn_background"
+                            android:padding="12dp"
+                            android:text="@string/multiply"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
