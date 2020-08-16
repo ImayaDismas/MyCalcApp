@@ -60,21 +60,19 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             public void onServiceDisconnected(ComponentName name) {
                 // TODO Auto-generated method stub
                 mService = null;
-                Toast.makeText(getApplicationContext(), "no", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Disconnected", Toast.LENGTH_SHORT).show();
                 Log.d("IRemote", "Binding - Service disconnected");
             }
 
             @Override
-            public void onServiceConnected(ComponentName name, IBinder service)
-            {
+            public void onServiceConnected(ComponentName name, IBinder service) {
                 // TODO Auto-generated method stub
                 mService = IRemote.Stub.asInterface((IBinder) service);
-                Toast.makeText(getApplicationContext(), "yes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
                 Log.d("IRemote", "Binding is done - Service connected");
             }
         };
-        if(mService == null)
-        {
+        if(mService == null) {
             Intent it = new Intent();
             it.setAction("com.remote.service.CALCULATOR");
             //binding to remote service

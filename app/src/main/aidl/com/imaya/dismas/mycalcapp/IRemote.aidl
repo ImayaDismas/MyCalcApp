@@ -1,0 +1,11 @@
+package com.imaya.dismas.mycalcapp;
+
+interface IRemote {
+    int add(int a, int b);
+
+    int subtract(int a, int b);
+
+    int divide(int a, int b);
+
+    int multiply(int a, int b);
+}
