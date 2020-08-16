@@ -3,13 +3,21 @@ package com.imaya.dismas.mycalcapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.imaya.dismas.mycalcapp.databinding.HomeBinding;
 
@@ -19,6 +27,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
     private static String TAG = Home.class.getSimpleName();
     private HomeBinding binding;
     private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+    protected IRemote mService;
+    ServiceConnection mServiceConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +49,86 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         binding.teResult.setKeyListener(null);
 
         binding.tlResult.setEnabled(false);
+
+        initConnection();
+    }
+
+    void initConnection(){
+        mServiceConnection = new ServiceConnection() {
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                // TODO Auto-generated method stub
+                mService = null;
+                Toast.makeText(getApplicationContext(), "no", Toast.LENGTH_SHORT).show();
+                Log.d("IRemote", "Binding - Service disconnected");
+            }
+
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service)
+            {
+                // TODO Auto-generated method stub
+                mService = IRemote.Stub.asInterface((IBinder) service);
+                Toast.makeText(getApplicationContext(), "yes", Toast.LENGTH_SHORT).show();
+                Log.d("IRemote", "Binding is done - Service connected");
+            }
+        };
+        if(mService == null)
+        {
+            Intent it = new Intent();
+            it.setAction("com.remote.service.CALCULATOR");
+            //binding to remote service
+            bindService(it, mServiceConnection, Service.BIND_AUTO_CREATE);
+        }
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(mServiceConnection);
     }
 
     @Override
     public void onClick(View v) {
+        int value1 = Integer.parseInt(binding.teValue1.getText().toString());
+        int value2 = Integer.parseInt(binding.teValue2.getText().toString());
+        binding.linearLayoutResult.setVisibility(View.VISIBLE);
         hideKeyboard();
         switch (v.getId()){
             case R.id.btnAdd:
-
+                try{
+                    binding.teResult.setText("Result -> Add ->"+mService.add(value1, value2));
+                    Log.d("IRemote", "Binding - Add operation");
+                } catch (RemoteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 break;
             case R.id.btnSubtract:
-
+                try{
+                    binding.teResult.setText("Result -> Subtract ->"+mService.subtract(value1, value2));
+                    Log.d("IRemote", "Binding - Subtract operation");
+                } catch (RemoteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 break;
             case R.id.btnDivide:
-
+                try{
+                    binding.teResult.setText("Result -> Divide ->"+mService.divide(value1, value2));
+                    Log.d("IRemote", "Binding - Divide operation");
+                } catch (RemoteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 break;
             case R.id.btnMultiply:
-
+                try{
+                    binding.teResult.setText("Result -> Multiply ->"+mService.multiply(value1, value2));
+                    Log.d("IRemote", "Binding - Multiply operation");
+                } catch (RemoteException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 break;
             default:
                 break;
@@ -71,6 +144,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.linearLayoutResult.setVisibility(View.GONE);
                 String input = binding.teValue1.getText().toString().trim();
                 validateValue1(input);
             }
@@ -89,6 +163,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.linearLayoutResult.setVisibility(View.GONE);
                 String input = binding.teValue2.getText().toString().trim();
                 validateValue2(input);
             }
