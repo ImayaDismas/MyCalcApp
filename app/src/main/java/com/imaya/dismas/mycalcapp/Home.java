@@ -75,6 +75,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         if(mService == null) {
             Intent it = new Intent();
             it.setAction("com.remote.service.CALCULATOR");
+            it.setPackage(this.getPackageName());
             //binding to remote service
             bindService(it, mServiceConnection, Service.BIND_AUTO_CREATE);
         }
