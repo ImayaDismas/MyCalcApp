@@ -33,6 +33,12 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         binding.btnMultiply.setOnClickListener(this);
 
         onTextChangedListener();
+
+        binding.teResult.setEnabled(false);
+        binding.teResult.setCursorVisible(false);
+        binding.teResult.setKeyListener(null);
+
+        binding.tlResult.setEnabled(false);
     }
 
     @Override
