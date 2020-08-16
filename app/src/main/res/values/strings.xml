@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyCalcApp</string>
+    <string name="input_value_1">Input value 1</string>
 </resources>
