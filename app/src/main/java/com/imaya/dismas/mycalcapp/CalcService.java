@@ -32,7 +32,7 @@ public class CalcService extends Service {
         @Override
         public double divide(int a, int b) throws RemoteException {
             // TODO Auto-generated method stub
-            return (a / b);
+            return (a * 1.0 / b);
         }
 
         @Override
