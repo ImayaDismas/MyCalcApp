@@ -18,27 +18,27 @@ public class CalcService extends Service {
     private final IRemote.Stub mBinder = new IRemote.Stub() {
 
         @Override
-        public int add(int a, int b) throws RemoteException {
+        public double add(int a, int b) throws RemoteException {
             // TODO Auto-generated method stub
             return (a + b);
         }
 
         @Override
-        public int subtract(int a, int b) throws RemoteException {
+        public double subtract(int a, int b) throws RemoteException {
             // TODO Auto-generated method stub
             return (a - b);
         }
 
         @Override
-        public int divide(int a, int b) throws RemoteException {
+        public double divide(int a, int b) throws RemoteException {
             // TODO Auto-generated method stub
             return (a / b);
         }
 
         @Override
-        public int multiply(int a, int b) throws RemoteException {
+        public double multiply(int a, int b) throws RemoteException {
             // TODO Auto-generated method stub
-            return (a / b);
+            return (a * b);
         }
     };
 }
